@@ -46,3 +46,33 @@ Bunny supports Ruby 2.0 and later versions.
     ruby rpc_client.rb
 
 To learn more, visit [Bunny documentation](http://rubybunny.info) site.
+
+
+***
+
+
+> RabbitMQはメッセージブローカーです。
+主なアイデアはかなりシンプルです。
+メッセージを受け入れて転送します。
+あなたはそれを郵便局と考えることができます。
+郵便箱にメールを送るとき、郵便配達員が最終的にあなたの受取人に郵便物を届けてくれると確信しています。
+このメタファーを使うとRabbitMQはポストボックス、郵便局、郵便配達員です。
+
+らしい。Google翻訳使えば読めます。
+
+https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html
+
+
+***
+
+先にRabbitMQをインストールしておく。
+Macの場合はbrewでOK。
+
+```
+brew install rabbitmq #インストール
+rabbitmq-server #起動
+rabbitmqctl status #ステータスを見る
+rabbitmq-plugins enable rabbitmq_management #管理画面を有効にする
+open http://localhost:15672 #管理画面を開く guest/guest でログイン
+```
+
