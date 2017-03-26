@@ -1,15 +1,15 @@
-#!/usr/bin/env ruby
-# encoding: utf-8
+require 'bunny'
 
-require "bunny"
-
-conn = Bunny.new(:automatically_recover => false)
+# RabbitMQに接続
+# デフォルトだとローカルホストに接続する
+# 別のマシンの場合はホスト指定する Bunny.new(:hostname => "rabbit.local")
+conn = Bunny.new(automatically_recover: false)
 conn.start
 
-ch   = conn.create_channel
-q    = ch.queue("hello")
+ch = conn.create_channel # チャンネルを作る 
+q  = ch.queue('hello') # キューの設定
+ch.default_exchange.publish('hello world', routing_key: q.name) # メッセージを送る
 
-ch.default_exchange.publish("Hello World!", :routing_key => q.name)
 puts " [x] Sent 'Hello World!'"
 
 conn.close
