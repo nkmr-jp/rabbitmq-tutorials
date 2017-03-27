@@ -7,10 +7,10 @@ conn = Bunny.new(:automatically_recover => false)
 conn.start
 
 ch  = conn.create_channel
-x   = ch.fanout("logs")
-q   = ch.queue("", :exclusive => true)
+x   = ch.fanout("logs") # エクスチェンジを定義
+q   = ch.queue("", :exclusive => true) #キューを定義
 
-q.bind(x)
+q.bind(x) # これからlogsエクスチェンジによってメッセージがキューに追加されます。
 
 puts " [*] Waiting for logs. To exit press CTRL+C"
 
@@ -24,3 +24,8 @@ rescue Interrupt => _
 
   exit(0)
 end
+
+
+# エクスチェンジとキューとの関係をバインディングといいます。
+# rabbitmqctl list_exchanges エクスチェンジリストみれる
+# rabbitmqctl list_bindings バインディングリストみれる
